@@ -1,8 +1,10 @@
 package com.how2j.thread.concurrent;
 
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -17,11 +19,24 @@ public class ThreadPoolExecutorDemo {
         Service service = new Service();
         RunThread runThread = new RunThread(service);
         //超过线程池大小时，会报拒绝执行错误
-        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue(1);
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 15, 10, TimeUnit.SECONDS, linkedBlockingQueue);
-        for (int i = 0; i < 17; i++) {
-            System.out.println("executor: " + executor.getPoolSize());
-            executor.submit(runThread);
+        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue(5);
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                3,//核心池的大小（即线程池中的线程数目大于这个参数时，提交的任务会被放进任务缓存队列）
+                5,//线程池最大能创建的线程数
+                10,//除核心池外的线程，超过核心池数量的线程能存活的时间
+                TimeUnit.SECONDS,//存活时间的单位
+                linkedBlockingQueue,//存放任务的阻塞队列
+                new ThreadFactoryTest(),//创建线程的线程工厂
+                new ThreadPoolExecutor.CallerRunsPolicy()//当任务数量达到阻塞队列和线程池最大线程数量时，拒绝执行任务的策略
+        );
+        try {
+            for (int i = 0; i < 10; i++) {
+                executor.execute(runThread);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            executor.shutdown();
         }
     }
 }
@@ -35,12 +50,6 @@ class RunThread implements Runnable {
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println( "Thread Name：" + Thread.currentThread().getName());
         service.doSomeThing();
     }
 }
@@ -50,11 +59,30 @@ class Service {
     private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     public void doSomeThing() {
-        readWriteLock.readLock().lock();
-        for (int i = 0; i < 10; i++) {
+        readWriteLock.writeLock().lock();
+        for (int i = 0; i < 5; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             count++;
+            System.out.println("Current Thread Name: " + Thread.currentThread().getName() + ",Count Is: " + count);
         }
-        readWriteLock.readLock().unlock();
+        readWriteLock.writeLock().unlock();
+    }
+}
+
+//自定义线程工厂，实现ThreadFactory接口即可
+class ThreadFactoryTest implements ThreadFactory {
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
+
+    @Override
+    public Thread newThread(Runnable r) {
+        int count = atomicInteger.getAndIncrement();
+        Thread thread = new Thread(r);
+        thread.setName("pool-" + count + "-Thread-" + count);
+        return thread;
     }
 }
 
