@@ -57,7 +57,7 @@ public class BaseType {
          * 浮点数不能用来表示精确的值，如货币；
          * 例子：float f1 = 234.5f。
          */
-        float f1 = 234.5f;
+        float f = 234.5f;
 
         /**
          * double 数据类型是双精度、64 位、符合 IEEE 754 标准的浮点数；
