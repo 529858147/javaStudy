@@ -94,16 +94,18 @@ public class ReferenceTypes {
         Object object1 = new Object();
         Object object2 = new Object();
         Object object3 = new Object();
-        ReferenceQueue queue = new ReferenceQueue();
-        SoftReference<Object> softReference = new SoftReference<>(object1, queue);
-        WeakReference<Object> weakReference = new WeakReference<>(object2, queue);
-        PhantomReference<Object> phantomReference = new PhantomReference<>(object3, queue);
+        ReferenceQueue queue1 = new ReferenceQueue();
+        ReferenceQueue queue2 = new ReferenceQueue();
+        ReferenceQueue queue3 = new ReferenceQueue();
+        SoftReference<Object> softReference = new SoftReference<>(object1, queue1);
+        WeakReference<Object> weakReference = new WeakReference<>(object2, queue2);
+        PhantomReference<Object> phantomReference = new PhantomReference<>(object3, queue3);
         object1 = null;
         object2 = null;
         object3 = null;
         System.gc();
-        System.out.println("softReference: " + softReference.get() + ", queue: " + queue.poll());
-        System.out.println("weakReference: " + weakReference.get() + ", queue: " + queue.poll());
-        System.out.println("phantomReference: " + phantomReference.get() + ", queue: " + queue.poll());
+        System.out.println("softReference: " + softReference.get() + ", queue: " + queue1.poll());
+        System.out.println("weakReference: " + weakReference.get() + ", queue: " + queue2.poll());
+        System.out.println("phantomReference: " + phantomReference.get() + ", queue: " + queue3.poll());
     }
 }
