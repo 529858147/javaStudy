@@ -68,6 +68,7 @@ public class BaseType {
          * 默认值是 0.0f；
          * 浮点数不能用来表示精确的值，如货币；
          * 例子：float f1 = 234.5f。
+         * 包装类为 Float
          */
         float f = 234.5f;
 
@@ -76,6 +77,7 @@ public class BaseType {
          * 浮点数的默认类型为 double 类型；
          * double类型同样不能表示精确的值，如货币；
          * 默认值是 0.0d；
+         * 包装类为 Double
          */
         double d = 0.1d;
 
@@ -85,6 +87,7 @@ public class BaseType {
          * 这种类型只作为一种标志来记录 true/false 情况；
          * 默认值是 false；
          * 例子：boolean one = true。
+         * 包装类为 Boolean
          */
         boolean flag = true;
 
@@ -93,7 +96,8 @@ public class BaseType {
          * 最小值是 \u0000（十进制等效值为 0）；
          * 最大值是 \uffff（即为 65535）；
          * char 数据类型可以储存任何字符；
-         * 例子：char letter = 'A';。
+         * 例子：char letter = 'A';
+         * 包装类为 Character
          */
         char c = 'a';
 
