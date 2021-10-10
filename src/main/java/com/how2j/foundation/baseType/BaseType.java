@@ -4,7 +4,7 @@ package com.how2j.foundation.baseType;
  * @author louis
  * @Title:
  * @Package
- * @Description:Java基本数据类型 Java语言提供了八种基本类型。六种数字类型（四个整数型，两个浮点型），一种字符类型，还有一种布尔型。
+ * @Description: Java语言提供了八种基本类型。六种数字类型（四个整数型，两个浮点型），一种字符类型，还有一种布尔型。
  * @date 2021/10/8 22:19
  */
 public class BaseType {
