@@ -16,8 +16,11 @@ public class BaseType {
          * 默认值是 0；
          * byte 类型用在大型数组中节约空间，主要代替整数，因为 byte 变量占用的空间只有 int 类型的四分之一；
          * 例子：byte a = 100，byte b = -50。
+         * 对应的包装类 Byte
          */
         byte a = 0;
+        Byte b = new Byte(a);
+        System.out.println("Byte:" + b.doubleValue());
 
         /**
          * short 数据类型是 16 位、有符号的以二进制补码表示的整数
@@ -26,8 +29,11 @@ public class BaseType {
          * Short 数据类型也可以像 byte 那样节省空间。一个short变量是int型变量所占空间的二分之一；
          * 默认值是 0；
          * 例子：short s = 1000，short r = -20000。
+         * 包装类型为 Short
          */
         short s = 1000;
+        Short aShort = new Short(s);
+        System.out.println("Short:" + aShort.shortValue());
 
         /**
          * int 数据类型是32位、有符号的以二进制补码表示的整数；
@@ -36,8 +42,13 @@ public class BaseType {
          * 一般地整型变量默认为 int 类型；
          * 默认值是 0 ；
          * 例子：int a = 100000, int b = -200000。
+         * 包装类为 Integer
+         * Byte、Short、Integer、Long、Char这几个装箱类的valueOf()方法是以128位分界线做了缓存的，
+         * 假如是128以下且-128以上的值是会取缓存里面的引用的：
          */
         int i = 0;
+        Integer integer = new Integer(i);
+        System.out.println("Integer: " + integer.intValue());
 
         /**
          * long 数据类型是 64 位、有符号的以二进制补码表示的整数；
@@ -47,9 +58,10 @@ public class BaseType {
          * 默认值是 0L；
          * 例子： long a = 100000L，Long b = -200000L。
          * "L"理论上不分大小写，但是若写成"l"容易与数字"1"混淆，不容易分辩。所以最好大写。
+         * 包装类为 Long
          */
         long l = 100000L;
-
+        Long aLong = Long.valueOf(1);
         /**
          * float 数据类型是单精度、32位、符合IEEE 754标准的浮点数；
          * float 在储存大型浮点数组的时候可节省内存空间；
