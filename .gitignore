@@ -1,2 +1,2 @@
 # Ignore folder
-target*
+target/maven-status*
