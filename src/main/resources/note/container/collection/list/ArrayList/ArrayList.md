@@ -66,9 +66,9 @@ java.io.Serializable <p>
             * 如果没有这样的方法，则默认调用是 ObjectOutputStream 的 defaultWriteObject 方法以及 ObjectInputStream 的 defaultReadObject 方法。
             * 用户自定义的 writeObject 和 readObject 方法可以允许用户控制序列化的过程，比如可以在序列化的过程中动态改变序列化的数值。
         3. ArrayList源码自定义序列化和反序列化：
-            * 序列化
+            * 序列化<p>
               ![img_9.png](img_9.png)
-            * 反序列化
+            * 反序列化<p>
               ![img_10.png](img_10.png)
         4. 为什么要遍历元素实现序列化呢？<p>
            ArrayList实际上是动态数组，每次在放满以后自动增长设定的长度值，如果数组自动增长长度设为100，而实际只放了一个元素，那就会序列化99个null元素。为了保证在序列化的时候不会将这么多null同时进行序列化，ArrayList把元素数组设置为transient。
