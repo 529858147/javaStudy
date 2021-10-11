@@ -18,6 +18,7 @@ public class StringType {
      * String 是不可变的对象，是因为使用了private final char value[]变量来存储字符
      * 每次对 String 类型进行改变的时候其实都等同于生成了一个新的 String 对象，然后将指针指向新的 String 对象
      * String Pool：用来存储String的字面量，当常量池存在相同字符串时，会从常量池中取值
+     * new String("a")说明: 当stringPool中存在字符串“a”时，则只会在堆中创建new String()对象，反之会创建一个new String()对象后，还会再创建一个常量“a”对象
      * 在某些特别情况下， String 对象的字符串拼接其实是被 JVM 解释成了 StringBuilder 对象的拼接，所以有些时候 String 对象的速度并不会比 StringBuilder 对象慢，
      */
     public static void str() {
