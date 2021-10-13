@@ -38,7 +38,6 @@ public class ArrayListDemo {
 
         }
 
-
         ListIterator<Integer> listIterator = arrayList.listIterator();
         while (listIterator.hasNext()) {
             if (listIterator.next() == 2) {
