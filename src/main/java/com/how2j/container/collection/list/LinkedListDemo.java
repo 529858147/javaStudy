@@ -1,6 +1,9 @@
 package com.how2j.container.collection.list;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author louis
@@ -27,5 +30,21 @@ public class LinkedListDemo {
         System.out.println(linkedList);
         linkedList.push(11);
         System.out.println("push: " + linkedList);
+
+        for (ListIterator<Integer> listIterator = linkedList.listIterator(); listIterator.hasNext(); ) {
+            linkedList.remove();
+            System.out.println("listIterator remove: " + linkedList);
+        }
+
+        LinkedList<Integer> linkedList1 = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            linkedList1.push(i);
+        }
+        for (int i = 0; i < linkedList1.size(); i++) {//错误用法
+            linkedList1.remove();
+            System.out.println(linkedList1);
+        }
+        List<Integer> synchronizedList = Collections.synchronizedList(linkedList);
+        synchronizedList.add(1);
     }
 }
