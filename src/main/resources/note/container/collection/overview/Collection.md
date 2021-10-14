@@ -1,8 +1,11 @@
-## Java的Collection详解
+## Java集合框架概览
 
-1. 架构图
-   ![img_3.png](img_3.png)
-2. Iterable接口
+### 1. 架构图<p>
+
+![img_3.png](img_3.png)
+
+### 2. Iterable接口
+
     1. Iterable是一个超级接口，被Collection所继承。它只有一个方法： Iterator<T> iterator() //即返回一个迭代器
     2. 迭代器是一种设计模式，它是一个对象，它可以遍历并选择序列中的对象，而开发人员不需要了解该序列的底层结构。迭代器通常被称为“轻量级”对象，因为创建它的代价小。
     3. Java中的Iterator功能比较简单，并且只能单向移动：
@@ -11,7 +14,9 @@
         2. 使用next()获得序列中的下一个元素。
         3. 使用hasNext()检查序列中是否还有元素。
         4. 使用remove()将迭代器新返回的元素删除。
-3. List 接口
+
+### 3. List 接口
+
     1. List是有序的 collection（也称为序列）。此接口的用户可以对列表中每个元素的插入位置进行精确地控制。用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素。
     2. 用户插入的顺序或者指定的位置就是元素插入的位置。它与Set不同，List允许插入重复的值。
     3. List 接口提供了特殊的迭代器，称为 ListIterator，除了允许 Iterator 接口提供的正常操作外，该迭代器还允许元素插入和替换，以及双向访问。
@@ -28,7 +33,9 @@
             * 它还实现了Deque接口，专门用于操作表头和表尾元素，可以当作堆栈、队列和双向队列使用。
         4. 关于ArrayList，LinkedList，Vector的区别
            ![img_1.png](img_1.png)
-4. Set接口
+
+### 4. Set接口
+
     1. Set，顾名思义，集合的意思。java的集合和数学的集合一样，满足集合的无序性，确定性，单一性。所以可以很好的理解，Set是无序、不可重复的。同时，如果有多个null，则不满足单一性了，所以Set只能有一个null。
     2. Set的子类：
         1. HashSet （类）
@@ -44,7 +51,9 @@
                 * TreeSet（类）：TreeSet是SortedSet接口的实现类，TreeSet可以确保集合元素处于排序状态
         3. EnumSet（类）
             * EnumSet是一个专门为枚举类设计的集合类，EnumSet中所有元素都必须是指定枚举类型的枚举值，该枚举类型在创建EnumSet时显式、或隐式地指定。EnumSet的集合元素也是有序的，
-5. Queue 接口
+
+### 5. Queue 接口
+
     1. 此接口用于模拟“队列”数据结构（FIFO）。新插入的元素放在队尾，队头存放着保存时间最长的元素。
     2. Queue的子类、子接口
         1. PriorityQueue——优先队列（类）
@@ -52,9 +61,13 @@
         2. Deque——双端队列（接口）
             * ArrayDeque（类）：基于数组的双端队列，类似于ArrayList有一个Object[] 数组。
             * LinkedList（类）：上文已有，略
-6. 概述List，Set，Queue三个接口的区别
-   ![img_2.png](img_2.png)
-7. Map接口
+
+### 6. 概述List，Set，Queue三个接口的区别
+
+![img_2.png](img_2.png)
+
+### 7. Map接口
+
     1. HashMap（类）
         1. 和HashSet集合不能保证元素的顺序一样，HashMap也不能保证key-value对的顺序。并且类似于HashSet判断两个key是否相等的标准一样: 两个key通过equals()方法比较返回true、
            同时两个key的hashCode值也必须相等
