@@ -12,19 +12,21 @@ implements List<E>, Deque<E>, Cloneable, java.io.Serializable {}
 * LinkedList 实现java.io.Serializable接口，这意味着LinkedList支持序列化，能通过序列化去传输。
 * LinkedList 是非同步的。
 
-1. LinkedList类图
-   ![img.png](img.png)
-    1. LinkedList的本质是双向链表:<p>
-       (01) LinkedList继承于AbstractSequentialList，并且实现了Dequeue接口。<p>
-       (02) LinkedList包含两个重要的成员：header 和 size。<p>
-       (03) header是双向链表的表头，它是双向链表节点所对应的类Entry的实例。<p>
-       (04) Entry中包含成员变量： previous, next, element。其中，previous是该节点的上一个节点，next是该节点的下一个节点，element是该节点所包含的值。
-       size是双向链表中节点的个数。
-    2. 数据结构图：<p>
-       ![img_3.png](img_3.png)
+### 1. LinkedList类图<p>
 
-2. LinkedList源码解析
-3. 常用API解析
+![img.png](img.png)
+
+1. LinkedList的本质是双向链表:<p>
+   (01) LinkedList继承于AbstractSequentialList，并且实现了Dequeue接口。<p>
+   (02) LinkedList包含两个重要的成员：header 和 size。<p>
+   (03) header是双向链表的表头，它是双向链表节点所对应的类Entry的实例。<p>
+   (04) Entry中包含成员变量： previous, next, element。其中，previous是该节点的上一个节点，next是该节点的下一个节点，element是该节点所包含的值。 size是双向链表中节点的个数。 2.
+   数据结构图：<p>
+   ![img_3.png](img_3.png)
+
+### 2. LinkedList源码解析
+
+### 3. 常用API解析
 
 * 将指定元素插入此列表的开头：addFirst(E e); || offerFirst(E e);
 * 将指定元素添加到此列表的结尾：addLast(E e); || offerLast(E e);
@@ -41,6 +43,7 @@ implements List<E>, Deque<E>, Cloneable, java.io.Serializable {}
 * 将此列表中某位置的元素替换为指定的元素: set(2, "S")
 * 列表元素区间截取(含头不含尾，调用该方法生成的新的list，内部引用的还是原来的链表，如果改变subList中的值，主list中的值也会跟着改变): subList(1, 4)
 
-4. 栈和队列的通用方法
-   ![img_1.png](img_1.png)
-   ![img_2.png](img_2.png)
+### 4. 栈和队列的通用方法
+
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
