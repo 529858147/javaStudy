@@ -1,4 +1,4 @@
-package com.how2j.io;
+package com.how2j.io.file;
 
 import java.io.File;
 
