@@ -111,8 +111,8 @@ public class IODemo {
         Properties properties = new Properties();
         properties.load(new FileInputStream("D:/properties.txt"));
         Set<String> propertyNames = properties.stringPropertyNames();
-        for (String key : propertyNames ) {
-            System.out.println(key+": "+properties.getProperty(key));
+        for (String key : propertyNames) {
+            System.out.println(key + ": " + properties.getProperty(key));
         }
     }
 }
