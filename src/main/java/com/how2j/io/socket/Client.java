@@ -3,6 +3,8 @@ package com.how2j.io.socket;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -20,7 +22,7 @@ public class Client {
     public static void initClient() {
         try {
             Socket socket = new Socket(InetAddress.getLocalHost(), 8888);
-            System.out.println("启动客户端，客户端连接成功：" + socket.isConnected());
+            System.out.println("启动客户端，客户端连接成功：" + socket.isConnected() + ", " + getDate());
 
             //构建客户端的IO
             InputStream inputStream = socket.getInputStream();//数据从网卡到内存
@@ -46,7 +48,7 @@ public class Client {
                         String str = new String(chars, 0, len);
                         stringBuilder.append(str);
                         if (str.indexOf("\n") > -1) {
-                            System.out.println("服务器返回：" + stringBuilder);
+                            System.out.print(getDate() + ",服务器返回：" + stringBuilder);
                             break;
                         }
                     }
@@ -55,5 +57,12 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getDate() {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(cal.getTime());
+        return date;
     }
 }
