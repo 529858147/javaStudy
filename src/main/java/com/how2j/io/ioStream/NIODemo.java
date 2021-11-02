@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
@@ -47,5 +48,11 @@ public class NIODemo {
             System.out.println(Charset.forName("UTF-8").decode(buffer));
             buffer.clear();
         }
+
+        ByteBuffer wrap = ByteBuffer.wrap("test".getBytes(StandardCharsets.UTF_8));
+        System.out.println("使用wrap方法生成byteBuffer不会改变position位置" + wrap.position());
+        wrap.flip();//使用flip后由于position是0，limit也会变成0，会导致缓冲区根据position和limit读取不出数据
+        //wrap.get();get方法会报错，返回空值
+        fileChannel.write(wrap);
     }
 }
