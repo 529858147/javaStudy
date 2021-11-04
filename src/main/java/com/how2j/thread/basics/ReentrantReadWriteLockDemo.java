@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 3、多个读锁之间不会互斥，但是读锁与写锁互斥，写锁与写锁之间互斥
  * @date 2021/8/13 22:08
  */
-public class Thread08 {
+public class ReentrantReadWriteLockDemo {
     public static void main(String[] args) throws InterruptedException {
         Service service = new Service();
         Service service1 = new Service();

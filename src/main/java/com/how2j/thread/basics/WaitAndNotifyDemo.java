@@ -10,7 +10,7 @@ package com.how2j.thread.basics;
  * 3、notify方法会随机对一个线程进行唤醒，并且开始竞争锁，唤醒的线程获得锁之后，到执行结束后才会释放锁
  * @date 2021/8/10 21:18
  */
-public class Thread04 {
+public class WaitAndNotifyDemo {
     public static void main(String[] args) {
         String lock = new String();
         P p = new P(lock);

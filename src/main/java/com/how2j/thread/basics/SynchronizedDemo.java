@@ -7,7 +7,7 @@ package com.how2j.thread.basics;
  * @Description: 学习synchronized的用法
  * @date 2021/8/9 21:35
  */
-public class Thread02 {
+public class SynchronizedDemo {
     public static void main(String[] args) throws InterruptedException {
         String lock = new String();
         MyService myService = new MyService(lock);

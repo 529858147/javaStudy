@@ -11,7 +11,7 @@ import java.util.Date;
  * 盒子中可以存储每个线程的私有数据
  * @date 2021/8/12 20:40
  */
-public class Thread06 {
+public class ThreadLocalDemo {
     public static void main(String[] args) {
         System.out.println(new Tools().get());
         for (int i = 20; i < 30; i++) {

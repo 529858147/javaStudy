@@ -9,7 +9,7 @@ package com.how2j.thread.basics;
  * 3、和synchronized区别为，synchronized可以保证可见性和原子性，并且会阻塞线程
  * @date 2021/8/10 20:35
  */
-public class Thread03 {
+public class VolatileDemo {
     public static void main(String[] args) throws InterruptedException {
         ThreadC threadC = new ThreadC();
         new Thread(threadC).start();

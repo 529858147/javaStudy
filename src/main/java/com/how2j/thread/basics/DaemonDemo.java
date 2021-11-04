@@ -9,7 +9,7 @@ package com.how2j.thread.basics;
  * 2、在Daemon线程中产生的新线程也是Daemon的。
  * @date 2021/8/15 20:07
  */
-public class Thread11 {
+public class DaemonDemo {
     public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new Thread(new Runnable() {
 

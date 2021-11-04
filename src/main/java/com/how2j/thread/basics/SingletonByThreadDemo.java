@@ -10,7 +10,7 @@ package com.how2j.thread.basics;
  * 3、饿汉式单例模式: 饿汉式是在类加载的时候创建实例,所以线程是安全的
  * @date 2021/8/14 15:07
  */
-public class Thread10 {
+public class SingletonByThreadDemo {
     public static void main(String[] args) throws InterruptedException {
         ThreadN[] ns = new ThreadN[20];
         for (int i = 0; i < ns.length; i++) {

@@ -14,7 +14,7 @@ import java.util.concurrent.FutureTask;
  * 3、实现Callable接口
  * @date 2021/8/9 20:59
  */
-public class Thread01 {
+public class ImplementThreadDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ThreadExtend threadExtend = new ThreadExtend();
         threadExtend.start();

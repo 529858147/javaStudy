@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 4、Condition类可以指定线程唤醒用法为使用lock对象创建多个Condition对象，分别使用condition对方法进行await和signal操作
  * @date 2021/8/12 21:10
  */
-public class Thread07 {
+public class ReentrantLockDemo {
     public static void main(String[] args) throws InterruptedException {
         MyServiceReentrant serviceReentrant = new MyServiceReentrant();
         ThreadJ threadJ = new ThreadJ(serviceReentrant);

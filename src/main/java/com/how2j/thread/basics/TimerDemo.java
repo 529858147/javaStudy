@@ -13,7 +13,7 @@ import java.util.TimerTask;
  * 2、Timer类是要作用是设置计划任务，封装任务的类是TimerTask类，执行计划任务的代码要放入TimerTask的子类中，因为TimerTask是一个抽象类
  * @date 2021/8/14 14:47
  */
-public class Thread09 {
+public class TimerDemo {
     public static void main(String[] args) {
         Task task = new Task();
         Timer timer = new Timer();

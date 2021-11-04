@@ -17,7 +17,7 @@ import java.io.PipedOutputStream;
  * output是从内存写到磁盘.
  * @date 2021/8/11 21:16
  */
-public class Thread05 {
+public class PipedInputStreamDemo {
     public static void main(String[] args) throws IOException, InterruptedException {
         Write write = new Write();
         Read read = new Read();
