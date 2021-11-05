@@ -23,11 +23,14 @@ public class ReflectDemo {
         Class[] classes = {Hello.class};
         Hello h = (Hello) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), classes, handler);
         h.say("test");
-        Constructor<?>[] constructors = h.getClass().getConstructors();
+        Class clazz = h.getClass();
+        Constructor<?>[] constructors = clazz.getConstructors();
         for(Constructor constructor : constructors){
             constructor.setAccessible(true);
             System.out.println(constructor.getParameterTypes());
         }
+        System.out.println(clazz.getName());
+        System.out.println(clazz.getComponentType());
     }
 }
 
