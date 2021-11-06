@@ -42,7 +42,7 @@ class RunThread implements Runnable {
     private ServicePool servicePool;
 
     public RunThread(ServicePool servicePool) {
-        this.servicePool = servicePool
+        this.servicePool = servicePool;
     }
 
     @Override
