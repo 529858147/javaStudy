@@ -1,4 +1,4 @@
-package com.how2j.thread.concurrent;
+package com.how2j.thread.basics;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,8 +13,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ThreadPoolExecutorDemo {
     public static void main(String[] args) throws InterruptedException {
-        Service service = new Service();
-        RunThread runThread = new RunThread(service);
+        ServicePool servicePool = new ServicePool();
+        RunThread runThread = new RunThread(servicePool);
         //超过线程池大小时，会报拒绝执行错误
         BlockingQueue<Runnable> blockingQueue = BlockingQueueEnum.ARRAY_BLOCKING_QUEUE.getBlockingQueue();
         ThreadPoolExecutor executor = new ThreadPoolExecutor(
@@ -39,19 +39,19 @@ public class ThreadPoolExecutorDemo {
 }
 
 class RunThread implements Runnable {
-    private Service service;
+    private ServicePool servicePool;
 
-    public RunThread(Service service) {
-        this.service = service;
+    public RunThread(ServicePool servicePool) {
+        this.servicePool = servicePool
     }
 
     @Override
     public void run() {
-        service.doSomeThing();
+        servicePool.doSomeThing();
     }
 }
 
-class Service {
+class ServicePool {
     private int count = 0;
     private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
