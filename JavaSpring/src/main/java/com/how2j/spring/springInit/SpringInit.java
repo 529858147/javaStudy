@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringInit {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/springConfig.xml");
-        User user = (User) applicationContext.getBean("user");
-        System.out.println(applicationContext.getApplicationName());
+        User user = applicationContext.getBean("user", User.class);
+        user.printUserInfo();
     }
 }

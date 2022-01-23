@@ -1,8 +1,5 @@
 package com.how2j.spring.springInit;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 /**
  * @author louis
  * @Title:
@@ -10,8 +7,6 @@ import org.springframework.stereotype.Component;
  * @Description:
  * @date 2021/11/8 22:34
  */
-@Component()
-@Scope(value = "singleton")
 public class User {
     private String name;
     private int age;
@@ -38,5 +33,9 @@ public class User {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public void printUserInfo() {
+        System.out.println(this.toString());
     }
 }
