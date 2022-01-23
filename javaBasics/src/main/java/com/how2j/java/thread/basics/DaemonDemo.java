@@ -4,8 +4,7 @@ package com.how2j.java.thread.basics;
  * @author louis
  * @Title:
  * @Package
- * @Description:
- * 1、守护线程是指为其他线程服务的线程。在JVM中，所有非守护线程都执行完毕后，无论有没有守护线程，虚拟机都会自动退出。
+ * @Description: 1、守护线程是指为其他线程服务的线程。在JVM中，所有非守护线程都执行完毕后，无论有没有守护线程，虚拟机都会自动退出。
  * 2、在Daemon线程中产生的新线程也是Daemon的。
  * @date 2021/8/15 20:07
  */

@@ -4,8 +4,7 @@ package com.how2j.java.thread.basics;
  * @author louis
  * @Title:
  * @Package
- * @Description:
- * 1、使用锁实现多线程场景下的单例模式
+ * @Description: 1、使用锁实现多线程场景下的单例模式
  * 2、懒汉式单例模式: 多线程调用下，存在线程安全问题
  * 3、饿汉式单例模式: 饿汉式是在类加载的时候创建实例,所以线程是安全的
  * @date 2021/8/14 15:07

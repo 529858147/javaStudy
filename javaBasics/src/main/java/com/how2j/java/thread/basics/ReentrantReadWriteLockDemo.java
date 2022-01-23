@@ -6,8 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author louis
  * @Title:
  * @Package
- * @Description:
- * 1、ReentrantReadWriteLock类具有ReadLock和WriteLock两种锁，持有的锁类型为对象锁
+ * @Description: 1、ReentrantReadWriteLock类具有ReadLock和WriteLock两种锁，持有的锁类型为对象锁
  * 2、读写锁表示有两个锁，一个是读操作相关的锁，也称为共享锁，另一个是写操作相关的锁，也叫做排他锁
  * 3、多个读锁之间不会互斥，但是读锁与写锁互斥，写锁与写锁之间互斥
  * @date 2021/8/13 22:08

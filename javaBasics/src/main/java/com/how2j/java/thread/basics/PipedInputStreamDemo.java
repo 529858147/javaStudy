@@ -8,8 +8,7 @@ import java.io.PipedOutputStream;
  * @author louis
  * @Title:
  * @Package
- * @Description:
- * 1、线程间的通信：字节流，输入
+ * @Description: 1、线程间的通信：字节流，输入
  * 2、线程间的通信：字符流
  * 为什么input是读取,output是写入?
  * 开始一直不明白,明明input是入,output是出. 原来是因为 程序和运行时数据是在内存中驻留的,而input,output都是相对内存来说的

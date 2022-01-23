@@ -4,8 +4,7 @@ package com.how2j.java.thread.basics;
  * @author louis
  * @Title:
  * @Package
- * @Description:
- * 1、使用wait和notify模拟生产者消费者
+ * @Description: 1、使用wait和notify模拟生产者消费者
  * 2、wait方法会释放持有的锁，并且线程对象会进入线程等待池，等待被唤醒
  * 3、notify方法会随机对一个线程进行唤醒，并且开始竞争锁，唤醒的线程获得锁之后，到执行结束后才会释放锁
  * @date 2021/8/10 21:18
@@ -101,7 +100,7 @@ class P {
                     lock.wait();
                 }
                 ValueObject.value = "food";
-                System.out.println("生产者："+Thread.currentThread().getName() + ",生成了一份食物: " + ValueObject.value);
+                System.out.println("生产者：" + Thread.currentThread().getName() + ",生成了一份食物: " + ValueObject.value);
                 lock.notify();
             }
         } catch (InterruptedException e) {

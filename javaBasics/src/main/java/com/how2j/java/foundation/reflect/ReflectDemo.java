@@ -25,7 +25,7 @@ public class ReflectDemo {
         h.say("test");
         Class clazz = h.getClass();
         Constructor<?>[] constructors = clazz.getConstructors();
-        for(Constructor constructor : constructors){
+        for (Constructor constructor : constructors) {
             constructor.setAccessible(true);
             System.out.println(constructor.getParameterTypes());
         }
@@ -45,7 +45,7 @@ class Handler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("proxy before");
         Object obj = args[0];
-        Object invoke = method.invoke(object,obj);
+        Object invoke = method.invoke(object, obj);
         return invoke;
     }
 }
