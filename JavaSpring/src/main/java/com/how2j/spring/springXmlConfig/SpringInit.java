@@ -1,4 +1,4 @@
-package com.how2j.spring.springInit;
+package com.how2j.spring.springXmlConfig;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
