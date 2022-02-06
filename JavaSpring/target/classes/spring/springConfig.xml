@@ -17,13 +17,12 @@
             abstract：是否成为其他bean的模板
             scope：bean的作用域，默认为单例，值有以下几种：singleton ，prototype，request，session，global session
         -->
-        <bean id="user" class="com.how2j.spring.springInit.User">
+        <bean id="user" class="com.how2j.spring.springXmlConfig.User">
             <property name="age" value="1"></property>
             <property name="name" value="Tom"></property>
         </bean>
-        <bean id="proxyDemo" class="com.how2j.spring.springInit.ProxyDemo"></bean>
+        <bean id="proxyDemo" class="com.how2j.spring.springXmlConfig.ProxyDemo"></bean>
         <aop:config>
-            <aop:pointcut id="pointCut" expression="execution(* com.how2j.spring.springInit.User.*(..))"/>
             <aop:aspect id="proxy" ref="proxyDemo">
                 <!--
                 execution()表达式：
@@ -33,6 +32,7 @@
                     第二个*号：表示类名，*号表示所有的类
                     *(..)：最后这个星号表示方法名，*号表示所有的方法，后面括弧里面表示方法的参数，两个句点表示任何参数
                 -->
+                <aop:pointcut id="pointCut" expression="execution(* com.how2j.spring.springXmlConfig.User.*(..))"/>
                 <aop:before method="beforeMethod" pointcut-ref="pointCut"/>
                 <aop:after method="afterMethod" pointcut-ref="pointCut"/>
             </aop:aspect>
