@@ -10,7 +10,7 @@
         <setting name="aggressiveLazyLoading" value="false"/>
         <!-- 打开全局缓存开关（二级缓存）默认值就是 true -->
         <setting name="cacheEnabled" value="true"/>
-        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
     <typeAliases>
         <package name="com.how2j.spring.springTransaction.bean"/>

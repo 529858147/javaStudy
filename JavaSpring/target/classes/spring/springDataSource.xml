@@ -17,7 +17,7 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
-    <!-- 2) 获取 SqlSessionFactory 对象，并交由 spring 管理-->
+    <!-- 获取 SqlSessionFactory 对象，并交由 spring 管理-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入连接池
          给 sqlSessionFactory 的属性 dataSource 赋值
@@ -32,7 +32,7 @@
         <property name="configLocation" value="classpath:mybatisConfig/mybatisConfig.xml"/>
     </bean>
 
-    <!--4 自动扫描对象关系映射 -->
+    <!-- 自动扫描对象关系映射 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 指定要自动扫描接口的基础包，实现接口 -->
         <property name="basePackage" value="com.how2j.spring.springTransaction.mapper"></property>
