@@ -1,5 +1,9 @@
 package com.how2j.spring.springTransaction.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author louis
  * @Title:
@@ -7,39 +11,14 @@ package com.how2j.spring.springTransaction.bean;
  * @Description:
  * @date 2022/1/23 21:38
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+    private int id;
     private String name;
     private int age;
-
-    public User() {
-    }
-
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
+    private String address;
+    private String position;
+    private String roleName;
 }

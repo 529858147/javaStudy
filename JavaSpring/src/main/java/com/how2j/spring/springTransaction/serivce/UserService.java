@@ -31,10 +31,14 @@ public class UserService {
     @Transactional
     public void addUser(List<User> userList) {
         userMapper.addUser(userList);
-        int a = 1 / 0;
     }
 
     public void deleteUser() {
         userMapper.deleteUser();
+    }
+
+    @Transactional
+    public int addUserByOne(User user) {
+        return userMapper.addUserByOne(user);
     }
 }

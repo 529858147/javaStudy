@@ -21,4 +21,6 @@ public interface UserMapper {
     void addUser(List<User> userList);
 
     void deleteUser();
+
+    int addUserByOne(User user);
 }

@@ -44,8 +44,28 @@
    ![img_3.png](img_3.png)<p>
    ![img_4.png](img_4.png)<p>
 2. 过程简述：
-   1. 第一个过程是Resource资源定位。这个Resource指的是BeanDefinition的资源定位。这个过程就是容器找数据的过程，就像水桶装水需要先找到水一样。
-   2. 第二个过程是BeanDefinition的载入过程。这个载入过程是把用户定义好的Bean表示成Ioc容器内部的数据结构，而这个容器内部的数据结构就是BeanDefinition。
-   3. 第三个过程是向IOC容器注册这些BeanDefinition的过程，这个过程就是将前面的BeanDefinition保存到HashMap中的过程。
+    1. 第一个过程是Resource资源定位。这个Resource指的是BeanDefinition的资源定位。这个过程就是容器找数据的过程，就像水桶装水需要先找到水一样。
+    2. 第二个过程是BeanDefinition的载入过程。这个载入过程是把用户定义好的Bean表示成Ioc容器内部的数据结构，而这个容器内部的数据结构就是BeanDefinition。
+    3. 第三个过程是向IOC容器注册这些BeanDefinition的过程，这个过程就是将前面的BeanDefinition保存到HashMap中的过程。
 3. Bean的生命周期流程图<p>
-    
+   ![img_5.png](img_5.png)<p>
+   ![img_6.png](img_6.png)<p>
+   ![img_7.png](img_7.png)<p>
+4. 总体分为四个阶段
+    1. ①实例化 CreateBeanInstance
+    2. ②属性赋值 PopulateBean
+    3. ③初始化 Initialization
+    4. ④销毁 Destruction
+5. 循环依赖也是在属性填充阶段解决
+    1. 使用了三级缓存解决循环依赖的问题（二级缓存也能够解决，但是为了AOP代理对象的存储，才引入了三级缓存）,因为调用singletonFactory.getObject()
+       方法时，会对bean对象进行增强处理，动态代理也是在这一步完成的，所以三级缓存是用来存储动态代理的对象，二级缓存用来存储半成品对象，一级缓存用来存储初始化完毕的bean对象，三个Map缓存各司其职，符合单一功能的职责，也为了保证bean的生命周期不受到影响
+    2. 三级缓存主要指三个Map<p>
+       ![img_8.png](img_8.png)<p>
+       ![img_9.png](img_9.png)<p>
+    3. 为什么要三级缓存?
+        1. 假设去掉三级缓存，Bean 直接创建 earlySingletonObjects，看着好像也可以。如果有代理的时候，在 earlySingletonObjects
+           直接放代理对象就行了。但是会导致一个问题：在实例化阶段就得执行后置处理器，判断有 AnnotationAwareAspectJAutoProxyCreator 并创建代理对象。这么一想，是不是会对 Bean
+           的生命周期有影响。同样，先创建 singletonFactory 的好处就是：在真正需要实例化的时候，再使用 singletonFactory.getObject() 获取 Bean 或者 Bean
+           的代理。相当于是延迟实例化。
+        2. 假设去掉二级缓存：如果去掉了二级缓存，则需要直接在 singletonFactory.getObject() 阶段初始化完毕，并放到一级缓存中。那有这么一种场景，B 和 C 都依赖了 A。要知道在有代理的情况下
+           singletonFactory.getObject() 获取的是代理对象。而多次调用 singletonFactory.getObject() 返回的代理对象是不同的，就会导致 B 和 C 依赖了不同的 A。
