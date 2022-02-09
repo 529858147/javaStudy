@@ -12,17 +12,14 @@ public class DaemonDemo {
     public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new Thread(new Runnable() {
 
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        while (true) {
-                            Thread.sleep(1000);
-                            System.out.println("Thread 1 Run");
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            Thread thread = new Thread(() -> {
+                try {
+                    while (true) {
+                        Thread.sleep(1000);
+                        System.out.println("Thread 1 Run");
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             });
 
