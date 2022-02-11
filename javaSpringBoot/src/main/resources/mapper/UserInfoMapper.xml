@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.how2j.spring.springTransaction.mapper.UserMapper">
-    <resultMap id="userResultMap" type="com.how2j.spring.springTransaction.bean.User">
+<mapper namespace="com.how2j.mapper.UserInfoMapper">
+    <resultMap id="userResultMap" type="com.how2j.pojo.User">
         <result column="username" jdbcType="VARCHAR" property="name" javaType="java.lang.String"/>
     </resultMap>
     <select id="queryUserByName" resultMap="userResultMap">
@@ -10,7 +10,7 @@
             username = #{name}
         </where>
     </select>
-    <select id="queryUserList" resultMap="userResultMap">
+    <select id="queryUserList" resultMap="userResultMap" resultType="arraylist">
         select username, age
         from user
     </select>
@@ -20,7 +20,7 @@
             (#{user.name}, #{user.age}, #{user.address}, #{user.position}, #{user.roleName})
         </foreach>
     </insert>
-    <insert id="addUserByOne" parameterType="com.how2j.spring.springTransaction.bean.User">
+    <insert id="addUserByOne" parameterType="com.how2j.pojo.User">
         insert into user(id, username, age, address, position, role_name) value (#{id}, #{name}, #{age}, #{address}, #{position}, #{roleName})
     </insert>
     <delete id="deleteUser">

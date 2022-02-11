@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /netcare
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_database?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.how2j.pojo
