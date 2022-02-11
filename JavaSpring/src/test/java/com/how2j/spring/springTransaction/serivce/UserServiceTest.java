@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -56,7 +57,7 @@ public class UserServiceTest {
     @Test
     public void testAddUserByOne() throws InterruptedException {
         long startTime = System.currentTimeMillis();
-        //CountDownLatch countDownLatch = new CountDownLatch(100);
+        CountDownLatch countDownLatch = new CountDownLatch(100);
         ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(5, 10, 10, TimeUnit.SECONDS, new ArrayBlockingQueue(10), new ThreadPoolExecutor.CallerRunsPolicy());
         for (int i = 0; i < 100; i++) {
             int number = i;
@@ -67,13 +68,7 @@ public class UserServiceTest {
                 //countDownLatch.countDown();
             });
         }
-        //countDownLatch.await();
-//        for (int i = 0; i < 100; i++) {
-//            int number = i;
-//            User user = new User(number, "name:" + number, number, "position:" + number, "address:" + number, "roleName:" + number);
-//            userService.addUserByOne(user);
-//        }
-        Thread.sleep(20000);
+        countDownLatch.await();
         long endTime = System.currentTimeMillis();
         long spendTime = (endTime - startTime) / 1000;
         System.out.println("创建花费时间为：" + spendTime);
