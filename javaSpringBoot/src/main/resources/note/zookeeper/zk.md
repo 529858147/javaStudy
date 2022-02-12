@@ -76,7 +76,7 @@
         * 临时节点：不会进行数据持久化
         * 临时sequence节点：创建该节点会在名称后面自动递增序号，不会进行数据持久化
 
-### 5. zk的watcher机制
+### 5. zk的一些机制
 
 1. 监听器原理概览
     1. 首先需要一个main（）线程
@@ -90,3 +90,17 @@
         * 监听节点数据的变化：get path [watch]
         * 监听节点路径的变化：ls path [watch]
         * 节点数据或者路径的监听事件只能被触发一次，被触发后，需要重新进行注册，才能再次使用事件监听机制
+2. zk写数据的原理概览
+    1. 写入请求发送给Leader节点
+        * 客户端发送写请求给leader节点，leader节点写入数据后开始同步给follower节点
+        * 只要有半数的follower节点数据同步成功并且返回了ack给leader节点，leader节点就会返回给客户端写入数据成功的结果
+        * 后续再继续同步数据给其他follower节点<p>
+          ![img_3.png](img_3.png)<p>
+    2. 写入请求发送给follower节点
+        * 客户端发送写请求给follower节点，则follower节点会转发写请求给leader节点
+        * leader节点写入成功后，会把数据同步给其他follower节点
+        * 当半数以上的follower节点都同步数据后，follower节点会发送ack结果给leader节点
+        * leader节点收到follower节点同步数据成功的消息后，把写入成功的响应结果，再次返回给接收client写请求的follower节点
+        * 最后follower节点把写入成功的结果，返回给客户端<p>
+        * 然后leader服务器继续同步数据给其他剩余的follower节点<p>
+          ![img_4.png](img_4.png)<p>
