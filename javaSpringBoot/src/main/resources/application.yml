@@ -13,3 +13,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.how2j.pojo
+
+zookeeper:
+  address: 127.0.0.1:2181
+  timeout: 4000
