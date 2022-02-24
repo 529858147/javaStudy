@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 6001
   servlet:
     context-path: /netcare
 
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test_database?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://47.107.127.227:3306/test_database?useUnicode=true&characterEncoding=utf-8
     username: root
     password: root
 
@@ -15,5 +15,5 @@ mybatis:
   type-aliases-package: com.how2j.pojo
 
 zookeeper:
-  address: 127.0.0.1:2181
+  address: 47.107.127.227:2181
   timeout: 4000
