@@ -12,6 +12,7 @@
         <module>javaBasics</module>
         <module>JavaSpring</module>
         <module><![CDATA[docker&k8s]]></module>
+        <module>spring-test</module>
     </modules>
 
     <properties>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.how2j.mapper.UserInfoMapper">
+    <resultMap id="userResultMap" type="com.how2j.spring.springTransaction.bean.User">
+        <result column="username" jdbcType="VARCHAR" property="name" javaType="java.lang.String"/>
+    </resultMap>
+    <select id="queryUserByName" resultMap="userResultMap">
+        select username, age from user
+        <where>
+            username = #{name}
+        </where>
+    </select>
+    <select id="queryUserList" resultMap="userResultMap" resultType="arraylist">
+        select username, age
+        from user
+    </select>
+    <insert id="addUser" parameterType="arraylist">
+        insert into user(username, age, address, position, role_name) value
+        <foreach collection="list" item="user" index="index" separator=",">
+            (#{user.name}, #{user.age}, #{user.address}, #{user.position}, #{user.roleName})
+        </foreach>
+    </insert>
+    <insert id="addUserByOne" parameterType="com.how2j.spring.springTransaction.bean.User">
+        insert into user(id, username, age, address, position, role_name) value (#{id}, #{name}, #{age}, #{address}, #{position}, #{roleName})
+    </insert>
+    <delete id="deleteUser">
+        delete
+        from user
+    </delete>
+</mapper>
