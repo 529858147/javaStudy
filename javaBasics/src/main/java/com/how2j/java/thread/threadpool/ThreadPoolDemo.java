@@ -1,8 +1,11 @@
 package com.how2j.java.thread.threadpool;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author louis
@@ -12,23 +15,26 @@ import java.util.concurrent.Executors;
  * @date 2022/2/28 21:48
  */
 public class ThreadPoolDemo {
-    private static int i;
 
-    public static void main(String[] args) throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        ThreadPoolExecutor executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+        List<Future<StringBuffer>> resultList = new ArrayList<Future<StringBuffer>>();
         long startTime = System.currentTimeMillis();
         int fileSize = 100;
-        CountDownLatch countDownLatch = new CountDownLatch(fileSize);
         for (int i = 0; i < fileSize; i++) {
             StringBuffer str = new StringBuffer("str" + i);
             TestService testService = new TestService(str);
-            executorService.execute(() -> {
-                System.out.println(testService.processData());
-                countDownLatch.countDown();
-            });
+            Future<StringBuffer> future = executorService.submit(() -> testService.processData());
+            resultList.add(future);
         }
-        countDownLatch.await();
-        executorService.shutdown();
+        for (Future<StringBuffer> future : resultList) {
+            while (true) {
+                if (future.isDone()) {
+                    System.out.println(future.get() + "," + future.isDone());
+                    break;
+                }
+            }
+        }
         long endTime = System.currentTimeMillis();
         System.out.println("花费了：" + (endTime - startTime) + "ms");
     }
@@ -47,6 +53,8 @@ class TestService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return sb.append("test");
+        StringBuffer test = sb.append("test");
+        //System.out.println(test);
+        return test;
     }
 }
